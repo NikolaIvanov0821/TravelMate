@@ -1,0 +1,23 @@
+.footer {
+    background-color: #795548; 
+    color: #F9FBE7; 
+    padding: 15px;
+    text-align: center;
+}
+
+.footer-nav {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.footer-link {
+    color: #F9FBE7;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-link:hover {
+    color: #FF7043; 
+}
