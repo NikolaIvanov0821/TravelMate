@@ -4,7 +4,7 @@ import "./Register.css"
 import { Link, useNavigate } from "react-router";
 
 export default function Register() {
-    const [error, setError] = useState();
+    const [error, setError] = useState(null);
     const { register } = useRegister();
     const navigate = useNavigate();
 
@@ -14,16 +14,21 @@ export default function Register() {
         if (repassword !== password) {
             setError('Password mismatch!');
             setTimeout(() => setError(null), 3000);
+            return;
         }
 
         try {
             const userData = await register({ username, phone, email, password, repassword });
             console.log(userData);
-            localStorage.setItem('user', userData);
+            if (!userData || userData.message) {
+                throw new Error(userData.message || "Invalid email or password");
+            }
+            localStorage.setItem('user', JSON.stringify(userData));
             navigate('/');
         } catch (error) {
             setError(error.message);
             setTimeout(() => setError(null), 3000);
+            return;
         }
         
     }
@@ -39,8 +44,7 @@ export default function Register() {
                     <input
                         type="text"
                         name="username"
-                        // value={formData.username}
-                        // onChange={handleChange}
+                        //value={formData.username}
                         required
                     />
 
@@ -48,16 +52,14 @@ export default function Register() {
                     <input
                         type="phone"
                         name="phone"
-                    // value={formData.phone}
-                    // onChange={handleChange}
+                    //value={formData.phone}
                     />
 
                     <label htmlFor="email">Email:</label>
                     <input
                         type="email"
                         name="email"
-                        // value={formData.email}
-                        // onChange={handleChange}
+                        //value={formData.email}
                         required
                     />
 
@@ -65,8 +67,7 @@ export default function Register() {
                     <input
                         type="password"
                         name="password"
-                        // value={formData.password}
-                        // onChange={handleChange}
+                        //value={formData.password}
                         required
                     />
 
@@ -74,8 +75,7 @@ export default function Register() {
                     <input
                         type="password"
                         name="repassword"
-                        // value={formData.repassword}
-                        // onChange={handleChange}
+                        //value={formData.repassword}
                         required
                     />
 

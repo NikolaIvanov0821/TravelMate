@@ -9,7 +9,7 @@ userController.post('/register', async (req, res) => {
         const result = await userService.register(username, phone, email, password);
         res.json(result);
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        res.status(400).json({ error: error.message });
     }
 });
 
@@ -19,7 +19,7 @@ userController.post('/login', async (req, res) => {
         const result = await userService.login(email, password);
         res.json(result);
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        res.status(400).json({ error: error.message });
     }
 });
 

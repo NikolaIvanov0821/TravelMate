@@ -9,3 +9,11 @@ export const useRegister = () => {
 
     return { register };
 };
+
+export const useLogin = () => {
+    const login = async (data) => {
+        return await request.post(baseUrl + '/login', data);
+    };
+
+    return { login };
+};
