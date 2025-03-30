@@ -1,20 +1,35 @@
-import { Schema, model } from "mongoose";
+import { Schema, Types, model } from "mongoose";
 import bcrypt from "bcrypt";
 
 const userSchema = new Schema({
-    username: String,
-    phone: String,
-    email: String,
-    password: String,
-    liked: {
-        type: Array
+    username: {
+        type: String,
+        required: true
     },
-    reviews: {
-        type: Array
+    phone: {
+        type: String,
+        required: false
     },
-    createdAt: String,
-    updatedAt: String
-
+    email: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    blogs: [{
+        type: Types.ObjectId,
+        ref: 'Blog'
+    }],
+    trips: [{
+        type: Types.ObjectId,
+        ref: 'Trip'
+    }],
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 userSchema.pre('save', async function() {

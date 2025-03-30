@@ -1,5 +1,4 @@
-import { Schema, Types } from "mongoose";
-
+import { Schema, Types, model } from "mongoose";
 
 const tripSchema = new Schema({
     title: {
@@ -25,16 +24,25 @@ const tripSchema = new Schema({
     },
 
     participants: [{
-        
+        type: Types.ObjectId,
+        ref: 'User'
     }],
 
     notes: {
         type: String,
-        required: true
+        required: false
     },
 
     createdAt: {
         type: Date,
-        required: true
-    },
-})
+        default: Date.now
+    }
+});
+
+// tripSchema.pre('save', () => {
+//     this.createdAt = Date.now();
+// });
+
+const Trip = model('Trip', tripSchema);
+
+export default Trip;
