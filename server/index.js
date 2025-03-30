@@ -7,8 +7,9 @@ import cors from "cors";
 
 console.log('It works!');
 
+const MONGO_URI = 'mongodb+srv://niivanov2008:niivanov2008@cluster0.dehwi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
 try {
-    await mongoose.connect('mongodb+srv://niivanov2008:niivanov2008@cluster0.dehwi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', { dbName: 'travelmate'})
+    await mongoose.connect(MONGO_URI, { dbName: 'travelmate'})
     console.log('DB Connected!');
 } catch (error) {
     console.log('Cannot connect to DB!');
