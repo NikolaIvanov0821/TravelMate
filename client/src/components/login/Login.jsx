@@ -17,8 +17,11 @@ export default function Login() {
         try {
             const userData = await login({ email, password });
             console.log(userData);
-            if (!userData || userData.message) {
-                throw new Error(userData.message || "Invalid email or password");
+            if (userData.error) {
+                setError(userData.error);
+                setTimeout(() => setError(null), 3000);
+                return;
+                //throw new Error(userData.message || "Invalid email or password");
             }
             userLoginHandler(userData);
             navigate('/')

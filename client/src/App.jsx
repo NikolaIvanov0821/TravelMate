@@ -5,6 +5,8 @@ import Home from "./components/home/Home.jsx"
 import Register from "./components/register/Register.jsx"
 import Login from "./components/login/Login.jsx"
 import UserProvider from "./providers/UserProvider.jsx"
+import GuestGuard from "./guards/GuestGuard.jsx"
+import AuthGuard from "./guards/AuthGuard.jsx"
 
 
 function App() {
@@ -16,8 +18,13 @@ function App() {
 
                 <Routes>
                     <Route index element={<Home />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/login" element={<Login />} />
+                    <Route element={<GuestGuard/>}>
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/login" element={<Login />} />
+                    </Route>
+                    <Route element={<AuthGuard/>}>
+
+                    </Route>
                 </Routes>
 
                 <Footer />
