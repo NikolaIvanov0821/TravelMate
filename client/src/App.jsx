@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router"
 import Home from "./components/home/Home.jsx"
 import Register from "./components/register/Register.jsx"
 import Login from "./components/login/Login.jsx"
-import UserProvider from "./providers/UserProvider.js"
+import UserProvider from "./providers/UserProvider.jsx"
 
 
 function App() {

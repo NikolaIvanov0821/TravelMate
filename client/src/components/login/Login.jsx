@@ -2,12 +2,14 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useLogin } from "../../api/authHook";
 import "./Login.css";
+import { useUserContext } from "../../context/UserContext";
 
 
 export default function Login() {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
     const { login } = useLogin();
+    const { userLoginHandler } = useUserContext();
 
     const loginHandler = async (formData) => {
         const { email, password } = Object.fromEntries(formData);
@@ -18,7 +20,7 @@ export default function Login() {
             if (!userData || userData.message) {
                 throw new Error(userData.message || "Invalid email or password");
             }
-            localStorage.setItem('user', JSON.stringify(userData));
+            userLoginHandler(userData);
             navigate('/')
         } catch (error) {
             setError(error.message);

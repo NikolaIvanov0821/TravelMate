@@ -2,11 +2,13 @@ import { useState } from "react";
 import { useRegister } from "../../api/authHook";
 import "./Register.css"
 import { Link, useNavigate } from "react-router";
+import { useUserContext } from "../../context/UserContext";
 
 export default function Register() {
     const [error, setError] = useState(null);
     const { register } = useRegister();
     const navigate = useNavigate();
+    const { userLoginHandler } = useUserContext();
 
     const registerhandler = async (formData) => {
         const { username, phone, email, password, repassword } = Object.fromEntries(formData);
@@ -19,11 +21,11 @@ export default function Register() {
 
         try {
             const userData = await register({ username, phone, email, password, repassword });
-            console.log(userData);
+            console.log(userData.message);
             if (!userData || userData.message) {
                 throw new Error(userData.message || "Invalid email or password");
             }
-            localStorage.setItem('user', JSON.stringify(userData));
+            userLoginHandler(userData);
             navigate('/');
         } catch (error) {
             setError(error.message);

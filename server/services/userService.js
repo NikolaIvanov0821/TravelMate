@@ -10,9 +10,7 @@ const userService = {
         if (user) {
             throw new Error('User already exists');
         }
-
-        const hashed = await bcrypt.hash(password, 10)
-        const createdUser = await User.create({ username, phone, email, password: hashed });
+        const createdUser = await User.create({ username, phone, email, password });
 
         return generateResponse(createdUser);
     },
@@ -21,11 +19,13 @@ const userService = {
         console.log(user);
 
         if (!user) {
+            console.log('Invalid user or password - line 24')
             throw new Error('Invalid user or password');
         }
 
         const isValid = await bcrypt.compare(password, user.password);
         if (!isValid) {
+            console.log('Invalid user or password - line 30')
             throw new Error('Invalid user or password');
         }
 
