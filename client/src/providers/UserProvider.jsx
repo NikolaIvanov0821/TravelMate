@@ -5,13 +5,16 @@ export default function UserProvider({
     children,
 }) {
     const [authData, setAuthData] = usePersistedState('auth', {});
-    
+
     const userLoginHandler = (resultData) => {
         setAuthData(resultData);
     };
 
     const userLogoutHandler = () => {
-        setAuthData({});
+        console.log("Logging out...");
+        setAuthData(null); 
+        localStorage.removeItem("auth");
+        console.log("Auth data should be cleared:", localStorage.getItem("auth"));
     };
 
     return (
