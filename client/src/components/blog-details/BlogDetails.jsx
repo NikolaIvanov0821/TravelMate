@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router";
 import "./BlogDetails.css";
 import { useGetPostById } from "../../api/blogApi";
+import { useUserContext } from "../../context/UserContext";
 
 export default function BlogDetails() {
     const { id } = useParams();
-    
+    const { _id } = useUserContext();
     const [blog, setBlog] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -26,12 +27,17 @@ export default function BlogDetails() {
         fetchBlog();
     }, [id]);
 
+    const handleLike = () => {
+        
+    }
+
     if (loading) return <p className="loading">Loading...</p>;
     if (error) return <p className="error">{error}</p>;
     if (!blog) return <p className="error">Blog post not found.</p>;
 
     return (
         <div className="blog-details-container">
+            <Link to="/blog" className="back-to-blog">← Back to Blog</Link>
             <img src={blog.image} alt={blog.title} className="blog-details-image" />
             <h2 className="blog-details-title">{blog.title}</h2>
             <p className="blog-details-meta">
@@ -39,7 +45,13 @@ export default function BlogDetails() {
             </p>
             <p className="blog-details-content">{blog.content}</p>
 
-            <Link to="/blog" className="back-to-blog">← Back to Blog</Link>
+            {
+                _id && _id !== blog.owner && (
+                    <button onClick={handleLike} className="like-button">
+                        {blog.likes.includes(_id) ? "Unlike" : "Like"}
+                    </button>
+                )
+            }
         </div>
     );
 }
