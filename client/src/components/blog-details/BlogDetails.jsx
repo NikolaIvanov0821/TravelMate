@@ -93,7 +93,7 @@ export default function BlogDetails() {
 
     const fetchComments = async () => {
         try {
-            const data = await getAll(blog.id);
+            const data = await getAll(blog._id);
             
             // Fetch user details for each comment
             const userRequests = data.map(async (comment) => {
@@ -109,12 +109,15 @@ export default function BlogDetails() {
     };
 
     useEffect(() => {
-        fetchComments();
+        if (blog?._id) {
+            fetchComments();
+        }
+        
     }, [blog]);
 
     const handleCommentSubmit = async (e) => {
         try {
-            await create({ content: commentText, blog: blog.id, author: _id });
+            await create({ content: commentText, blog: blog._id, author: _id });
             setCommentText("");
             fetchComments(); // Refresh comments after adding
         } catch (error) {
