@@ -14,3 +14,5 @@ blogController.post('/', async (req, res) => {
     }
 
 });
+
+export default blogController;
