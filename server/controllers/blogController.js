@@ -34,4 +34,16 @@ blogController.post('/', async (req, res) => {
     }
 });
 
+blogController.put('/:id', async (req, res) => {
+    const blogId = req.params.id;
+    const updatedBlog = req.body;
+
+    try {
+        const result = await blogService.updateBlog(blogId, updatedBlog);
+        res.status(200).json(result);
+    } catch (error) {
+        res.status(400).json({ error });
+    }
+})
+
 export default blogController;

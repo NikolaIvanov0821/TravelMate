@@ -19,6 +19,10 @@ const blogService = {
 
     getById(id) {
         return Blog.findById(id);
+    },
+
+    updateBlog(blogId, updatedBlog) {
+        return Blog.findByIdAndUpdate(blogId, updatedBlog);
     }
 };
 
