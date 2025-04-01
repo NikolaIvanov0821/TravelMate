@@ -7,7 +7,7 @@ import { useCreateBlog } from "../../api/blogApi";
 
 export default function CreateBlogPost() {
     const navigate = useNavigate();
-    const _id = useUserContext();
+    const { _id } = useUserContext();
     const { create } = useCreateBlog();
 
     const initialState = {
@@ -20,16 +20,16 @@ export default function CreateBlogPost() {
 
     const submitHandler = async (state, formData) => {
         const title = formData.get("title");
-        const imageUrl = formData.get("imageUrl");
+        const image = formData.get("imageUrl");
         const category = formData.get("category");
         const content = formData.get("content");
 
-        if (!title || !imageUrl || !category || !content) {
+        if (!title || !image || !category || !content) {
             return { ...state, error: "All fields are required!" };
         }
 
         try {
-            const response = await create({ title, imageUrl, category, content, author: _id })
+            const response = await create({ title, image, category, content, author: _id })
 
             navigate("/blog"); 
         } catch (error) {
