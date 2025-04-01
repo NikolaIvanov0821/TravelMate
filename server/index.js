@@ -19,7 +19,8 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
-app.use(authMiddleware)
+app.use(corsMiddleware);
+app.use(authMiddleware);
 
 app.use(routes);
 
