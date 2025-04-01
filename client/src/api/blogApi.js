@@ -33,3 +33,11 @@ export const useUpdateBlogPost = () => {
 
     return { update }
 }
+
+export const useDeleteBlogPost = () => {
+    const deleteBlogPost = async (id) => {
+        return await request.delete(`${baseUrl}/${id}`);
+    }
+
+    return { deleteBlogPost}
+}

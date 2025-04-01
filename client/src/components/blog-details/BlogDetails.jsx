@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router";
+import { useParams, Link, useNavigate } from "react-router";
 import "./BlogDetails.css";
-import { useGetPostById, useUpdateBlogPost } from "../../api/blogApi";
+import { useDeleteBlogPost, useGetPostById, useUpdateBlogPost } from "../../api/blogApi";
 import { useUserContext } from "../../context/UserContext";
 
 export default function BlogDetails() {
@@ -15,6 +15,8 @@ export default function BlogDetails() {
     const { update } = useUpdateBlogPost();
     const [isEditing, setIsEditing] = useState(false);
     const [editForm, setEditForm] = useState({ title: "", image: "", category: "", content: "" });
+    const { deleteBlogPost } = useDeleteBlogPost();
+    const navigate = useNavigate();
 
     //console.log(blog.author);
 
@@ -75,7 +77,7 @@ export default function BlogDetails() {
         const confirmDelete = window.confirm("Are you sure you want to delete this blog?");
         if (confirmDelete) {
             try {
-                await deleteBlog(id);
+                await deleteBlogPost(id);
                 navigate("/blog");
             } catch (err) {
                 setError(err.message);
