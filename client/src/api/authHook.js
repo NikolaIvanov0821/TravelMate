@@ -17,3 +17,11 @@ export const useLogin = () => {
 
     return { login };
 };
+
+export const useGetUser = () => {
+    const getUser = async (userId) => {
+        return await request.get(`${baseUrl}/${userId}`)
+    };
+
+    return { getUser }
+}

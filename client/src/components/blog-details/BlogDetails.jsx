@@ -3,6 +3,8 @@ import { useParams, Link, useNavigate } from "react-router";
 import "./BlogDetails.css";
 import { useDeleteBlogPost, useGetPostById, useUpdateBlogPost } from "../../api/blogApi";
 import { useUserContext } from "../../context/UserContext";
+import { useCreateComment, useGetComments } from "../../api/commentApi";
+import { useGetUser } from "../../api/authHook";
 
 export default function BlogDetails() {
     const { id } = useParams();
@@ -17,7 +19,11 @@ export default function BlogDetails() {
     const [editForm, setEditForm] = useState({ title: "", image: "", category: "", content: "" });
     const { deleteBlogPost } = useDeleteBlogPost();
     const navigate = useNavigate();
-
+    const [comments, setComments] = useState([]);
+    const [commentText, setCommentText] = useState("");
+    const { getAll } = useGetComments();
+    const { create } = useCreateComment();
+    const { getUser } = useGetUser();
     //console.log(blog.author);
 
     useEffect(() => {
@@ -85,6 +91,37 @@ export default function BlogDetails() {
         }
     };
 
+    const fetchComments = async () => {
+        try {
+            const data = await getAll(blog.id);
+            
+            // Fetch user details for each comment
+            const userRequests = data.map(async (comment) => {
+                const userData = await getUser(comment.author);
+                return { ...comment, username: userData.username };
+            });
+            
+            const commentsWithUsers = await Promise.all(userRequests);
+            setComments(commentsWithUsers);
+        } catch (error) {
+            console.error("Error fetching comments:", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchComments();
+    }, [blog]);
+
+    const handleCommentSubmit = async (e) => {
+        try {
+            await create({ content: commentText, blog: blog.id, author: _id });
+            setCommentText("");
+            fetchComments(); // Refresh comments after adding
+        } catch (error) {
+            console.error("Error adding comment:", error);
+        }
+    };
+
     if (loading) return <p className="loading">Loading...</p>;
     if (error) return <p className="error">{error}</p>;
     if (!blog) return <p className="error">Blog post not found.</p>;
@@ -139,10 +176,10 @@ export default function BlogDetails() {
 
             <div className="comments-section">
                 <h3>Comments</h3>
-                {blog.comments.length > 0 ? (
-                    blog.comments.map((comment, index) => (
-                        <div key={index} className="comment">
-                            <p><strong>{comment.author}:</strong> {comment.content}</p>
+                {comments.length > 0 ? (
+                    comments.map((comment) => (
+                        <div key={comment._id} className="comment">
+                            <p><strong>{comment.username}:</strong> {comment.content}</p>
                         </div>
                     ))
                 ) : (
@@ -150,10 +187,10 @@ export default function BlogDetails() {
                 )}
 
                 {_id && (
-                    <form className="comment-form">
+                    <form className="comment-form" action={handleCommentSubmit}>
                         <textarea
-                            //value={commentText}
-                            //onChange={(e) => setCommentText(e.target.value)}
+                            value={commentText}
+                            onChange={(e) => setCommentText(e.target.value)}
                             placeholder="Write a comment..."
                             required
                         />

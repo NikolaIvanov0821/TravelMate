@@ -14,4 +14,15 @@ commentController.post('/', async (req, res) => {
     }
 });
 
+commentController.get('/', async (req, res) => {
+    const filter = req.query;
+
+    try {
+        const result = await commentService.getAll(filter);
+        res.status(200).json(result);
+    } catch (error) {
+        res.status(400).json({ error });
+    }
+});
+
 export default commentController;
