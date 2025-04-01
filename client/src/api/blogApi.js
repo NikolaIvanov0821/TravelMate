@@ -17,3 +17,11 @@ export const useGetAllPosts = () => {
 
     return { getAll }
 }
+
+export const useGetPostById = () => {
+    const getById = async (id) => {
+        return await request.get(`${baseUrl}/${id}`);
+    };
+
+    return { getById }
+}

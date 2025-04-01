@@ -15,7 +15,7 @@ blogController.get('/', async (req, res) => {
 });
 
 blogController.get('/:id', async (req, res) => {
-    const query = req.params.id;
+    const id = req.params.id;
     try {
         const result = await blogService.getById(id);
         res.status(200).json(result);
