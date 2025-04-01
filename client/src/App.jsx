@@ -10,6 +10,7 @@ import AuthGuard from "./guards/AuthGuard.jsx"
 import Logout from "./components/logout/Logout.jsx"
 import CreateBlogPost from "./components/create-blog-post/CreateBlogPost.jsx"
 import Blog from "./components/blog/Blog.jsx"
+import BlogDetails from "./components/blog-details/BlogDetails.jsx"
 
 
 function App() {
@@ -21,7 +22,8 @@ function App() {
 
                 <Routes>
                     <Route index element={<Home />} />
-                    <Route path="/blog" element={<Blog/>} />
+                    <Route path="/blog" element={<Blog />} />
+                    <Route path="/blog/:id" element={<BlogDetails />} />
                     <Route element={<GuestGuard />}>
                         <Route path="/register" element={<Register />} />
                         <Route path="/login" element={<Login />} />

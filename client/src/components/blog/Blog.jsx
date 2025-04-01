@@ -32,7 +32,6 @@ export default function Blog() {
     const listOfPosts = (blogs) => {
         const list = blogs.map((blog) => (
             <div key={blog._id} className="blog-card">
-                <script>{console.log(blog.image)}</script>
                 <img src={blog.image} alt={blog.title} className="blog-image" />
                 <div className="blog-content">
                     <h3 className="blog-heading">{blog.title}</h3>
