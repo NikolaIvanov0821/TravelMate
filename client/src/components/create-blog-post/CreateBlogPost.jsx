@@ -3,10 +3,12 @@ import { useNavigate } from "react-router";
 import { useActionState } from "react";
 import request from "../../utils/request";
 import { useUserContext } from "../../context/UserContext";
+import { useCreateBlog } from "../../api/blogApi";
 
 export default function CreateBlogPost() {
     const navigate = useNavigate();
     const _id = useUserContext();
+    const { create } = useCreateBlog();
 
     const initialState = {
         title: "",
@@ -27,7 +29,7 @@ export default function CreateBlogPost() {
         }
 
         try {
-            const response = await request.post('https://travelmate-eh27.onrender.com/blog', { title, imageUrl, category, content, author: _id })
+            const response = await create({ title, imageUrl, category, content, author: _id })
 
             navigate("/blog"); 
         } catch (error) {
