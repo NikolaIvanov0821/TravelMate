@@ -25,3 +25,11 @@ export const useGetPostById = () => {
 
     return { getById }
 }
+
+export const useUpdateBlogPost = () => {
+    const update = async (id, updated) => {
+        return await request.put(`${baseUrl}/${id}`, updated)
+    }
+
+    return { update }
+}
