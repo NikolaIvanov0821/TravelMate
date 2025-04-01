@@ -71,6 +71,18 @@ export default function BlogDetails() {
         }
     };
 
+    const handleDelete = async () => {
+        const confirmDelete = window.confirm("Are you sure you want to delete this blog?");
+        if (confirmDelete) {
+            try {
+                await deleteBlog(id);
+                navigate("/blog");
+            } catch (err) {
+                setError(err.message);
+            }
+        }
+    };
+
     if (loading) return <p className="loading">Loading...</p>;
     if (error) return <p className="error">{error}</p>;
     if (!blog) return <p className="error">Blog post not found.</p>;
@@ -96,7 +108,7 @@ export default function BlogDetails() {
                     <button onClick={handleEditToggle} className="edit-button">
                         {isEditing ? "Cancel" : "Edit"}
                     </button>
-                    <button className="delete-button">Delete</button>
+                    <button onClick={handleDelete} className="delete-button">Delete</button>
 
                     {isEditing && (
                         <div className="edit-form">

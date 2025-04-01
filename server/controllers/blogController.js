@@ -44,6 +44,17 @@ blogController.put('/:id', async (req, res) => {
     } catch (error) {
         res.status(400).json({ error });
     }
-})
+});
+
+blogController.delete('/:id', async (req, res) => {
+    const blogId = req.params.id;
+
+    try {
+        const result = await blogService.deleteBlog(blogId);
+        res.status(200).json(result);
+    } catch (error) {
+        res.status(400).json({ error });
+    }
+});
 
 export default blogController;

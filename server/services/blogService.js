@@ -23,6 +23,10 @@ const blogService = {
 
     updateBlog(blogId, updatedBlog) {
         return Blog.findByIdAndUpdate(blogId, updatedBlog);
+    },
+
+    deleteBlog(blogId) {
+        return Blog.findByIdAndDelete(blogId);
     }
 };
 
