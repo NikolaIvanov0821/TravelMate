@@ -1,4 +1,4 @@
-import Blog from "../models/Blog";
+import Blog from "../models/Blog.js";
 
 const blogService = {
     create(postData) {

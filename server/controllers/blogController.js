@@ -1,5 +1,5 @@
 import { Router } from "express";
-import blogService from "../services/blogService";
+import blogService from "../services/blogService.js";
 
 
 const blogController = Router();
