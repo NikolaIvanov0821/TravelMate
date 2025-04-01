@@ -95,7 +95,6 @@ export default function BlogDetails() {
         try {
             const data = await getAll(blog._id);
             
-            // Fetch user details for each comment
             const userRequests = data.map(async (comment) => {
                 const userData = await getUser(comment.author);
                 return { ...comment, username: userData.username };
@@ -119,7 +118,7 @@ export default function BlogDetails() {
         try {
             await create({ content: commentText, blog: blog._id, author: _id });
             setCommentText("");
-            fetchComments(); // Refresh comments after adding
+            fetchComments(); 
         } catch (error) {
             console.error("Error adding comment:", error);
         }
