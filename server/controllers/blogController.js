@@ -14,6 +14,16 @@ blogController.get('/', async (req, res) => {
     }
 });
 
+blogController.get('/:id', async (req, res) => {
+    const query = req.params.id;
+    try {
+        const result = await blogService.getById(id);
+        res.status(200).json(result);
+    } catch (error) {
+        res.status(400).json({ error });
+    }
+});
+
 blogController.post('/', async (req, res) => {
     const postData = req.body;
     try {

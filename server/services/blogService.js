@@ -15,6 +15,10 @@ const blogService = {
         }
 
         return query;
+    },
+
+    getById(id) {
+        return Blog.findById(id);
     }
 };
 
