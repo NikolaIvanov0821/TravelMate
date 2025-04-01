@@ -8,6 +8,8 @@ import UserProvider from "./providers/UserProvider.jsx"
 import GuestGuard from "./guards/GuestGuard.jsx"
 import AuthGuard from "./guards/AuthGuard.jsx"
 import Logout from "./components/logout/Logout.jsx"
+import CreateBlogPost from "./components/create-blog-post/CreateBlogPost.jsx"
+import Blog from "./components/blog/Blog.jsx"
 
 
 function App() {
@@ -19,13 +21,15 @@ function App() {
 
                 <Routes>
                     <Route index element={<Home />} />
-                    <Route element={<GuestGuard/>}>
+                    <Route path="/blog" element={<Blog/>} />
+                    <Route element={<GuestGuard />}>
                         <Route path="/register" element={<Register />} />
                         <Route path="/login" element={<Login />} />
-                        
+
                     </Route>
-                    <Route element={<AuthGuard/>}>
+                    <Route element={<AuthGuard />}>
                         <Route path="/logout" element={<Logout />} />
+                        <Route path="/blog/create" element={<CreateBlogPost />} />
                     </Route>
                 </Routes>
 
