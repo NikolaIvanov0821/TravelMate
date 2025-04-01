@@ -1,4 +1,4 @@
-import Comment from "../models/Comment";
+import Comment from "../models/Comment.js";
 
 const commentService = {
     create(comment) {
@@ -11,7 +11,7 @@ const commentService = {
         if (filter.blog) {
             query = query.where({ blog: filter.blog });
         }
-        
+
         return query;
     }
 };
