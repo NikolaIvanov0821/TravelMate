@@ -8,12 +8,14 @@ import UserProvider from "./providers/UserProvider.jsx"
 import GuestGuard from "./guards/GuestGuard.jsx"
 import AuthGuard from "./guards/AuthGuard.jsx"
 import Logout from "./components/logout/Logout.jsx"
-import CreateBlogPost from "./components/create-blog-post/CreateBlogPost.jsx"
+import CreateBlogPost from "./components/blog-post-create/CreateBlogPost.jsx"
 import Blog from "./components/blog/Blog.jsx"
 import BlogDetails from "./components/blog-details/BlogDetails.jsx"
 import Trips from "./components/trips/Trips.jsx"
 import CreateTrip from "./components/trips-create/TripsCreate.jsx"
 import TripsDetails from "./components/trips-details/TripsDetails.jsx"
+import EditTrip from "./components/trips-edit/TripsEdit.jsx"
+import BlogEdit from "./components/blog-edit/BlogEdit.jsx"
 
 
 function App() {
@@ -30,14 +32,15 @@ function App() {
                     <Route element={<GuestGuard />}>
                         <Route path="/register" element={<Register />} />
                         <Route path="/login" element={<Login />} />
-
                     </Route>
                     <Route element={<AuthGuard />}>
                         <Route path="/logout" element={<Logout />} />
                         <Route path="/blog/create" element={<CreateBlogPost />} />
+                        <Route path="/blog/edit/:id" element={<BlogEdit />} />
                         <Route path="/trips" element={<Trips />} />
                         <Route path="/trips/create" element={<CreateTrip />} />
                         <Route path="/trips/:id" element={<TripsDetails />} />
+                        <Route path="/trips/edit/:id" element={<EditTrip />} />
                     </Route>
                 </Routes>
 

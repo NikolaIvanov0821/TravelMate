@@ -1,7 +1,6 @@
 import "./CreateBlogPost.css";
 import { useNavigate } from "react-router";
 import { useActionState } from "react";
-import request from "../../utils/request";
 import { useUserContext } from "../../context/UserContext";
 import { useCreateBlog } from "../../api/blogApi";
 

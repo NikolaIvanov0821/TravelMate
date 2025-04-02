@@ -13,8 +13,6 @@ export default function BlogDetails() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [_, setLikes] = useState([]);
-    const [isEditing, setIsEditing] = useState(false);
-    const [editForm, setEditForm] = useState({ title: "", image: "", category: "", content: "" }); 
     const [comments, setComments] = useState([]);
     const [commentText, setCommentText] = useState("");
     const { deleteBlogPost } = useDeleteBlogPost();
@@ -31,7 +29,6 @@ export default function BlogDetails() {
                 const data = await getById(id);
                 setBlog(data);
                 setLikes(data.likes);
-                setEditForm({ title: data.title, image: data.image, category: data.category, content: data.content });
             } catch (error) {
                 setError(error.message);
             } finally {
@@ -50,28 +47,6 @@ export default function BlogDetails() {
         setLikes(updatedLikes);
         await update(id, { ...blog, likes: updatedLikes });
     }
-
-    const handleEditToggle = () => {
-        setIsEditing(!isEditing);
-        if (!isEditing) {
-            setEditForm({ title: blog.title, image: blog.image, category: blog.category, content: blog.content });
-        }
-    };
-
-    const handleInputChange = (e) => {
-        setEditForm({ ...editForm, [e.target.name]: e.target.value });
-    };
-
-    const handleSaveChanges = async () => {
-        try {
-            const updatedBlog = { ...blog, ...editForm };
-            await update(id, updatedBlog);
-            setBlog(updatedBlog);
-            setIsEditing(false);
-        } catch (error) {
-            console.error("Error updating blog:", error);
-        }
-    };
 
     const handleDelete = async () => {
         const confirmDelete = window.confirm("Are you sure you want to delete this blog?");
@@ -140,33 +115,10 @@ export default function BlogDetails() {
 
             {_id === blog.author && (
                 <div className="owner-actions">
-                    <button onClick={handleEditToggle} className="edit-button">
-                        {isEditing ? "Cancel" : "Edit"}
-                    </button>
+                    <Link to={`/blog/edit/${id}`} className="edit-button">Edit</Link>
                     <button onClick={handleDelete} className="delete-button">Delete</button>
 
-                    {isEditing && (
-                        <div className="edit-form">
-                            <label>Title:</label>
-                            <input type="text" name="title" value={editForm.title} onChange={handleInputChange} />
-
-                            <label>Image URL:</label>
-                            <input type="text" name="image" value={editForm.image} onChange={handleInputChange} />
-
-                            <label>Category:</label>
-                            <select name="category" value={editForm.category} onChange={handleInputChange}>
-                                <option value="Adventure">Adventure</option>
-                                <option value="Food">Food</option>
-                                <option value="Culture">Culture</option>
-                                <option value="Nature">Nature</option>
-                            </select>
-
-                            <label>Content:</label>
-                            <textarea name="content" value={editForm.content} onChange={handleInputChange} />
-
-                            <button onClick={handleSaveChanges} className="save-button">Save</button>
-                        </div>
-                    )}
+                    
                 </div>
             )}
 
