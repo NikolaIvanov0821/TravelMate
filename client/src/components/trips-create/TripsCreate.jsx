@@ -17,7 +17,7 @@ export default function CreateTrip() {
         const startDate = new Date(tripData.startDate);
         const endDate = new Date(tripData.endDate);
 
-        // Validation: Check if endDate is after startDate
+        
         if (endDate <= startDate) {
             return {
                 ...state,
