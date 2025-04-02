@@ -24,8 +24,14 @@ To run the application, follow these steps:
 2. Open a terminal and navigate to the `client` folder:
    ```bash
    cd client
+   ````
+   ```bash
    npm install
+   ````
+   ```bash
    npm run dev
+   ````
+  
 3. The project will open in your browser at http://localhost:5173/.
 
 Note: The server is hosted remotely, but it may sometimes be slow.
