@@ -17,7 +17,7 @@ tripController.get('/', async (req, res) => {
 tripController.get('/:id', async (req, res) => {
     const id = req.params.id;
     try {
-        const result = await tripService.getById(id);
+        const result = await tripService.getOne(id);
         res.status(200).json(result);
     } catch (error) {
         res.status(400).json({ error });
