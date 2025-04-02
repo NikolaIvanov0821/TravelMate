@@ -1,0 +1,144 @@
+.profile-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: #F9FBE7; /* Creamy White */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-container h2 {
+    color: #FF7043; /* Sunset Orange */
+    text-align: center;
+}
+
+.profile-container p {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.profile-meta-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-bottom: 2px solid #FF7043;
+}
+
+.profile-meta-container img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid #FF7043;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.user-info p {
+    font-size: 1rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.user-info i {
+    color: #4CAF50;
+}
+
+section {
+    margin-top: 2rem;
+}
+
+h3 {
+    color: #4CAF50; /* Forest Green */
+    margin-bottom: 1rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.blog-card, .trip-card {
+    background: white;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.blog-card h4, .trip-card h4 {
+    color: #795548; /* Brown */
+}
+
+.edit-button, .delete-button, .unlike-button, .leave-button {
+    margin-top: 0.5rem;
+    padding: 8px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.edit-button {
+    background-color: #FF7043;
+    color: white;
+}
+
+.delete-button {
+    background-color: #D32F2F;
+    color: white;
+}
+
+.unlike-button, .leave-button {
+    background-color: #795548;
+    color: white;
+}
+
+.edit-button:hover {
+    background-color: #E64A19;
+}
+
+.delete-button:hover {
+    background-color: #B71C1C;
+}
+
+.unlike-button:hover, .leave-button:hover {
+    background-color: #5D4037;
+}
+
+.view-button {
+    margin-top: 0.5rem;
+    padding: 8px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    background-color: #4CAF50; 
+    color: white;
+    border: none;
+}
+
+.view-button:hover {
+    background-color: #388E3C; 
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-meta-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}

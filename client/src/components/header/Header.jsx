@@ -1,9 +1,13 @@
 import { Link } from "react-router";
 import "./Header.css"
 import useAuth from "../../hooks/useAuth";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 
 export default function Header() {
     const { isAuthenticated } = useAuth();
+    const { _id } = useContext(UserContext);
+    
     return (
         <>
             <header className="header">
@@ -17,7 +21,7 @@ export default function Header() {
                                 <Link to="/trips" className="nav-link">Trips</Link>
                                 <Link to="/trips/create" className="nav-link">Planner</Link>
                                 <Link to="/logout" className="nav-link">Logout</Link>
-                                <Link to="/profile" className="nav-link">Profile</Link>
+                                <Link to={"/profile/" + _id} className="nav-link">Profile</Link>
                             </div>
                             : <div id="guest">
                                 <Link to="/login" className="nav-link">Login</Link>

@@ -16,6 +16,7 @@ import CreateTrip from "./components/trips-create/TripsCreate.jsx"
 import TripsDetails from "./components/trips-details/TripsDetails.jsx"
 import EditTrip from "./components/trips-edit/TripsEdit.jsx"
 import BlogEdit from "./components/blog-edit/BlogEdit.jsx"
+import Profile from "./components/user-profile/Profile.jsx"
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
                     </Route>
                     <Route element={<AuthGuard />}>
                         <Route path="/logout" element={<Logout />} />
+                        <Route path="/profile/:id" element={<Profile />} />
                         <Route path="/blog/create" element={<CreateBlogPost />} />
                         <Route path="/blog/edit/:id" element={<BlogEdit />} />
                         <Route path="/trips" element={<Trips />} />
