@@ -20,7 +20,7 @@ import Profile from "./components/user-profile/Profile.jsx"
 import Contact from "./components/static-pages/Contacts.jsx"
 import TermsConditions from "./components/static-pages/TermsConditions.jsx"
 import PrivacyPolicy from "./components/static-pages/Privacy.jsx"
-import About from "./components/static-pages/about.jsx"
+import About from "./components/static-pages/AboutPage.jsx"
 
 
 function App() {
