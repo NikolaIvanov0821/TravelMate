@@ -21,6 +21,7 @@ import Contact from "./components/static-pages/Contacts.jsx"
 import TermsConditions from "./components/static-pages/TermsConditions.jsx"
 import PrivacyPolicy from "./components/static-pages/Privacy.jsx"
 import About from "./components/static-pages/AboutPage.jsx"
+import NotFound from "./components/not-found/NotFound.jsx"
 
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
                         <Route path="/trips/:id" element={<TripsDetails />} />
                         <Route path="/trips/edit/:id" element={<EditTrip />} />
                     </Route>
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
 
                 <Footer />

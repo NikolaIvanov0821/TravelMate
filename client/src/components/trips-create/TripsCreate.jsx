@@ -14,6 +14,17 @@ export default function CreateTrip() {
         tripData.creator = _id;
         tripData.participants = [];
 
+        const startDate = new Date(tripData.startDate);
+        const endDate = new Date(tripData.endDate);
+
+        // Validation: Check if endDate is after startDate
+        if (endDate <= startDate) {
+            return {
+                ...state,
+                error: "End date must be after start date."
+            };
+        }
+
         try {
             await createTrip(tripData);
             navigate("/trips");
@@ -23,8 +34,8 @@ export default function CreateTrip() {
     }, {
         title: "",
         destination: "",
-        startDate: new Date().toISOString().split("T")[0], // Default to today
-        endDate: new Date(Date.now() + 86400000).toISOString().split("T")[0], // Default to tomorrow
+        startDate: new Date().toISOString().split("T")[0],
+        endDate: new Date(Date.now() + 86400000).toISOString().split("T")[0],
         notes: "",
         error: null
     });

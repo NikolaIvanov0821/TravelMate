@@ -14,7 +14,7 @@ export default function Header() {
 
                 <div className="logo-section">
                     <img src="/sitelogo.png" alt="" />
-                    <h3>TravleMate</h3>
+                    <h3>TravelMate</h3>
                 </div>
                 <nav className="nav">
                     <Link to="/" className="nav-link">Home</Link>

@@ -44,8 +44,9 @@ export default function BlogDetails() {
             ? blog.likes.filter((like) => like !== _id)
             : [...blog.likes, _id];
 
-        setLikes(updatedLikes);
-        await update(id, { ...blog, likes: updatedLikes });
+        setBlog((prevBlog) => ({ ...prevBlog, likes: updatedLikes }));
+        const updatedBlog = await update(id, { ...blog, likes: updatedLikes });
+        setBlog(updatedBlog);
     }
 
     const handleDelete = async () => {
@@ -117,8 +118,6 @@ export default function BlogDetails() {
                 <div className="owner-actions">
                     <Link to={`/blog/edit/${id}`} className="edit-button">Edit</Link>
                     <button onClick={handleDelete} className="delete-button">Delete</button>
-
-                    
                 </div>
             )}
 
