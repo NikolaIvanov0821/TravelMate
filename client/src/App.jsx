@@ -17,10 +17,10 @@ import TripsDetails from "./components/trips-details/TripsDetails.jsx"
 import EditTrip from "./components/trips-edit/TripsEdit.jsx"
 import BlogEdit from "./components/blog-edit/BlogEdit.jsx"
 import Profile from "./components/user-profile/Profile.jsx"
-import About from "./components/static-pages/about.jsx"
 import Contact from "./components/static-pages/Contacts.jsx"
 import TermsConditions from "./components/static-pages/TermsConditions.jsx"
 import PrivacyPolicy from "./components/static-pages/Privacy.jsx"
+import About from "./components/static-pages/about.jsx"
 
 
 function App() {
