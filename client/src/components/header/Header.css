@@ -1,24 +1,78 @@
 .header {
-    background-color: #FF7043; 
-    padding: 15px 20px;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
+    background-color: #FF7043; 
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
+
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-section img {
+    width: 50px;
+    height: auto;
+}
+
+.logo-section h3 {
+    color: white;
+    font-family: Poppins, sans-serif;
+    font-size: 22px;
+}
+
 
 .nav {
     display: flex;
-    gap: 20px;
+    gap: 15px;
 }
 
 .nav-link {
-    font-size: 16px;
-    font-weight: bold;
+    color: white;
+    font-size: 18px;
     text-decoration: none;
-    color: #F9FBE7; 
-    transition: color 0.3s;
+    font-weight: 500;
+    transition: 0.3s ease-in-out;
 }
 
 .nav-link:hover {
-    color: #4CAF50; 
+    color: #F9FBE7; 
+}
+
+
+#user, #guest {
+    display: flex;
+    gap: 15px;
+}
+
+
+@media screen and (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+    }
+
+    .nav {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    #user, #guest {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .logo-section h3 {
+        font-size: 20px;
+    }
 }

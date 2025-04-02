@@ -11,6 +11,11 @@ export default function Header() {
     return (
         <>
             <header className="header">
+
+                <div className="logo-section">
+                    <img src="/sitelogo.png" alt="" />
+                    <h3>TravleMate</h3>
+                </div>
                 <nav className="nav">
                     <Link to="/" className="nav-link">Home</Link>
                     <Link to="/blog" className="nav-link">Blog</Link>

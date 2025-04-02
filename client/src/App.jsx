@@ -17,6 +17,10 @@ import TripsDetails from "./components/trips-details/TripsDetails.jsx"
 import EditTrip from "./components/trips-edit/TripsEdit.jsx"
 import BlogEdit from "./components/blog-edit/BlogEdit.jsx"
 import Profile from "./components/user-profile/Profile.jsx"
+import About from "./components/static-pages/about.jsx"
+import Contact from "./components/static-pages/Contacts.jsx"
+import TermsConditions from "./components/static-pages/TermsConditions.jsx"
+import PrivacyPolicy from "./components/static-pages/Privacy.jsx"
 
 
 function App() {
@@ -29,6 +33,10 @@ function App() {
                 <Routes>
                     <Route index element={<Home />} />
                     <Route path="/blog" element={<Blog />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/terms" element={<TermsConditions />} />
+                    <Route path="/privacy" element={<PrivacyPolicy />} />
                     <Route path="/blog/:id" element={<BlogDetails />} />
                     <Route element={<GuestGuard />}>
                         <Route path="/register" element={<Register />} />
