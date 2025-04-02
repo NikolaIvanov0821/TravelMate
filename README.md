@@ -21,12 +21,12 @@ The project contains two main folders:
 To run the application, follow these steps:
 
 1. Clone the repository
-    ```bash git clone https://github.com/NikolaIvanov0821/TravelMate.git ```
+    ``` git clone https://github.com/NikolaIvanov0821/TravelMate.git ```
 2. Open the main project folder (containing both `client` and `server`) in Visual Studio Code.
 3. Open a terminal and navigate to the `client` folder:
-   ```bash cd client ```
-   ```bash npm install ```
-   ```bash npm run dev ```
+   ``` cd client ```
+   ``` npm install ```
+   ``` npm run dev ```
   
 4. The project will open in your browser at http://localhost:5173/.
 
