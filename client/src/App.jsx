@@ -13,6 +13,7 @@ import Blog from "./components/blog/Blog.jsx"
 import BlogDetails from "./components/blog-details/BlogDetails.jsx"
 import Trips from "./components/trips/Trips.jsx"
 import CreateTrip from "./components/trips-create/TripsCreate.jsx"
+import TripsDetails from "./components/trips-details/TripsDetails.jsx"
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
                         <Route path="/blog/create" element={<CreateBlogPost />} />
                         <Route path="/trips" element={<Trips />} />
                         <Route path="/trips/create" element={<CreateTrip />} />
+                        <Route path="/trips/:id" element={<TripsDetails />} />
                     </Route>
                 </Routes>
 

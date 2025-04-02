@@ -30,7 +30,7 @@ export const useCreateTrip = () => {
     return { createTrip }
 }
 
-export const useUpdatetrip = () => {
+export const useUpdateTrip = () => {
     const updateTrip = async (tripId, tripData) => {
         return await request.put(`${baseUrl}/${tripId}`, tripData);
     }

@@ -1,0 +1,73 @@
+.trip-details-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #F9FBE7;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.trip-title {
+    color: #FF7043;
+    font-family: "Poppins", sans-serif;
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.trip-destination, .trip-dates {
+    font-size: 16px;
+    font-weight: bold;
+    color: #795548;
+}
+
+.trip-notes {
+    font-size: 14px;
+    margin-top: 10px;
+    background: #fff3e0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.trip-participants ul {
+    list-style: none;
+    padding: 0;
+}
+
+.trip-participants li {
+    font-size: 14px;
+    background: #4CAF50;
+    color: white;
+    padding: 6px;
+    margin: 5px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.edit-button, .delete-button, .join-leave-button {
+    background-color: #FF7043;
+    color: white;
+    padding: 10px 15px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    margin: 10px;
+    transition: background 0.3s ease;
+}
+
+.delete-button {
+    background-color: #D32F2F;
+}
+
+.edit-button:hover {
+    background-color: #FB8C00;
+}
+
+.delete-button:hover {
+    background-color: #C62828;
+}
+
+.join-leave-button:hover {
+    background-color: #388E3C;
+}
