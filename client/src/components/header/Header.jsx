@@ -9,16 +9,17 @@ export default function Header() {
             <header className="header">
                 <nav className="nav">
                     <Link to="/" className="nav-link">Home</Link>
+                    <Link to="/blog" className="nav-link">Blog</Link>
                     <Link to="/about" className="nav-link">About</Link>
                     {
                         isAuthenticated
                             ? <div id="user">
-                                <Link to="/planner" className="nav-link">Planner</Link>
+                                <Link to="/trips" className="nav-link">Trips</Link>
+                                <Link to="/trips/create" className="nav-link">Planner</Link>
                                 <Link to="/logout" className="nav-link">Logout</Link>
                                 <Link to="/profile" className="nav-link">Profile</Link>
                             </div>
                             : <div id="guest">
-                                <Link to="/blog" className="nav-link">Blog</Link>
                                 <Link to="/login" className="nav-link">Login</Link>
                                 <Link to="/register" className="nav-link">Register</Link>
                             </div>

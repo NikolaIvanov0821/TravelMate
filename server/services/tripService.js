@@ -9,7 +9,7 @@ const tripService = {
         let query = Trip.find({});
 
         if (filter.user) {
-            query = query.where({ creator: filter.blog });
+            query = query.where({ creator: filter.user });
         }
 
         return query;

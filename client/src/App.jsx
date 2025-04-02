@@ -11,6 +11,8 @@ import Logout from "./components/logout/Logout.jsx"
 import CreateBlogPost from "./components/create-blog-post/CreateBlogPost.jsx"
 import Blog from "./components/blog/Blog.jsx"
 import BlogDetails from "./components/blog-details/BlogDetails.jsx"
+import Trips from "./components/trips/Trips.jsx"
+import CreateTrip from "./components/trips-create/TripsCreate.jsx"
 
 
 function App() {
@@ -32,6 +34,8 @@ function App() {
                     <Route element={<AuthGuard />}>
                         <Route path="/logout" element={<Logout />} />
                         <Route path="/blog/create" element={<CreateBlogPost />} />
+                        <Route path="/trips" element={<Trips />} />
+                        <Route path="/trips/create" element={<CreateTrip />} />
                     </Route>
                 </Routes>
 

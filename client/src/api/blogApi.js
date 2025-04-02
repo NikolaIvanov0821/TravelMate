@@ -39,5 +39,5 @@ export const useDeleteBlogPost = () => {
         return await request.delete(`${baseUrl}/${id}`);
     }
 
-    return { deleteBlogPost}
+    return { deleteBlogPost }
 }

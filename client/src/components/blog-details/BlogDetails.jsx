@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router";
-import "./BlogDetails.css";
 import { useDeleteBlogPost, useGetPostById, useUpdateBlogPost } from "../../api/blogApi";
 import { useUserContext } from "../../context/UserContext";
 import { useCreateComment, useGetComments } from "../../api/commentApi";
 import { useGetUser } from "../../api/authHook";
+import "./BlogDetails.css";
 
 export default function BlogDetails() {
     const { id } = useParams();
@@ -12,19 +12,18 @@ export default function BlogDetails() {
     const [blog, setBlog] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const { getById } = useGetPostById();
-    const [likes, setLikes] = useState([]);
-    const { update } = useUpdateBlogPost();
+    const [_, setLikes] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
-    const [editForm, setEditForm] = useState({ title: "", image: "", category: "", content: "" });
-    const { deleteBlogPost } = useDeleteBlogPost();
-    const navigate = useNavigate();
+    const [editForm, setEditForm] = useState({ title: "", image: "", category: "", content: "" }); 
     const [comments, setComments] = useState([]);
     const [commentText, setCommentText] = useState("");
+    const { deleteBlogPost } = useDeleteBlogPost();
+    const navigate = useNavigate();
+    const { update } = useUpdateBlogPost();
     const { getAll } = useGetComments();
     const { create } = useCreateComment();
     const { getUser } = useGetUser();
-    //console.log(blog.author);
+    const { getById } = useGetPostById();
 
     useEffect(() => {
         const fetchBlog = async () => {
@@ -44,17 +43,12 @@ export default function BlogDetails() {
     }, [id]);
 
     const handleLike = async () => {
-        let updated = blog;
+        const updatedLikes = blog.likes.includes(_id)
+            ? blog.likes.filter((like) => like !== _id)
+            : [...blog.likes, _id];
 
-        if (blog.likes.includes(_id)) {
-            updated.likes.pop(_id)
-
-        } else {
-            updated.likes.push(_id)
-        }
-        setLikes(updated.likes)
-        console.log(updated);
-        await update(id, updated).then(setLikes(updated.likes))
+        setLikes(updatedLikes);
+        await update(id, { ...blog, likes: updatedLikes });
     }
 
     const handleEditToggle = () => {
@@ -94,12 +88,12 @@ export default function BlogDetails() {
     const fetchComments = async () => {
         try {
             const data = await getAll(blog._id);
-            
+
             const userRequests = data.map(async (comment) => {
                 const userData = await getUser(comment.author);
                 return { ...comment, username: userData.username };
             });
-            
+
             const commentsWithUsers = await Promise.all(userRequests);
             setComments(commentsWithUsers);
         } catch (error) {
@@ -108,17 +102,17 @@ export default function BlogDetails() {
     };
 
     useEffect(() => {
-        if (blog?._id) {
-            fetchComments();
+        if (!blog?._id) {
+            return
         }
-        
+        fetchComments();
     }, [blog]);
 
     const handleCommentSubmit = async (e) => {
         try {
             await create({ content: commentText, blog: blog._id, author: _id });
             setCommentText("");
-            fetchComments(); 
+            fetchComments();
         } catch (error) {
             console.error("Error adding comment:", error);
         }

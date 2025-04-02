@@ -1,0 +1,73 @@
+.create-trip-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #F9FBE7; /* Soft background for a clean look */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    color: #FF7043;
+    font-family: "Poppins", sans-serif;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.error-message {
+    color: #D32F2F;
+    font-weight: bold;
+    background: #FFCDD2;
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #795548;
+    text-align: left;
+}
+
+input,
+textarea,
+select {
+    padding: 12px;
+    font-size: 14px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background: white;
+    transition: border 0.3s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border: 2px solid #FF7043;
+    outline: none;
+}
+
+textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.create-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0
+}
