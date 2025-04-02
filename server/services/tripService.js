@@ -16,7 +16,7 @@ const tripService = {
     },
 
     getOne(tripId) {
-        return Trip.findById(tripId)
+        return Trip.findById(tripId);
     },
 
     updateTrip(tripId, updatedtrip) {
