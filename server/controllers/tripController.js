@@ -39,7 +39,7 @@ tripController.put('/:id', async (req, res) => {
     const updatedTrip = req.body;
 
     try {
-        const result = await tripService.updateBlog(tripId, updatedTrip);
+        const result = await tripService.updateTrip(tripId, updatedTrip);
         res.status(200).json(result);
     } catch (error) {
         res.status(400).json({ error });
@@ -50,7 +50,7 @@ tripController.delete('/:id', async (req, res) => {
     const tripId = req.params.id;
 
     try {
-        const result = await tripService.deleteBlog(tripId);
+        const result = await tripService.deleteTrip(tripId);
         res.status(200).json(result);
     } catch (error) {
         res.status(400).json({ error });
