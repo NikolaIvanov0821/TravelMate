@@ -12,6 +12,10 @@ const tripService = {
             query = query.where({ creator: filter.user });
         }
 
+        if (filter.participant) {
+            query = query.where({ participants: { $in: [filter.participant] } });
+        }
+
         return query;
     },
 

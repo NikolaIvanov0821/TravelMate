@@ -15,7 +15,15 @@ export const useGetAllPosts = () => {
         return await request.get(baseUrl);
     };
 
-    return { getAll }
+    const getAllUserLiked = async (userId) => {
+        return await request.get(`${baseUrl}?userLiked=${userId}`)
+    };
+
+    const getAllUserOwns = async (userId) => {
+        return await request.get(`${baseUrl}?author=${userId}`)
+    };
+
+    return { getAll, getAllUserLiked, getAllUserOwns }
 }
 
 export const useGetPostById = () => {

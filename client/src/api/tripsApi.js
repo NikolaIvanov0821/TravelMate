@@ -11,7 +11,11 @@ export const useGetAllTrips = () => {
         return await request.get(`${baseUrl}?user=${userId}`);
     }
 
-    return { getAllTrips, getAllTripsByUser }
+    const getAllTripsUserIsIn = async (userId)  => {
+        return await request.get(`${baseUrl}?participant=${userId}`);
+    }
+
+    return { getAllTrips, getAllTripsByUser, getAllTripsUserIsIn }
 }
 
 export const useGetOneTrip = () => {

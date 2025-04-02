@@ -7,11 +7,19 @@ const blogService = {
     },
 
     getAll(filter = {}) {
-        const query = Blog.find();
+        let query = Blog.find();
 
         if (filter.where) {
             const q = querystring.parse(filter.where.replaceAll('"', ''))
             query.find(q)
+        }
+
+        if (filter.userLiked) {
+            query = query.where({ likes: { $in: [filter.userLiked] } });
+        }
+
+        if (filter.author) {
+            query = query.where({ author: filter.author })
         }
 
         return query;
